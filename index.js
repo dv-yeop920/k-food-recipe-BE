@@ -30,10 +30,7 @@ app.listen(PORT, (req, res) => {
 
 app.use("/api/users", require("./routes/user.route.js"));
 app.use("/api/posts", require("./routes/post.route.js"));
-app.use(
-  "/api/posts/comment",
-  require("./routes/comment.route.js")
-);
+app.use("/api/posts/comment", require("./routes/comment.route.js"));
 app.use("/api", require("./routes/recipe.route.js"));
 
 //const data = [];
