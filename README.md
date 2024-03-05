@@ -1,1 +1,1 @@
-# k-food-recipe-BE
+# k-food-recipes
