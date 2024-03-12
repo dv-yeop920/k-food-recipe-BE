@@ -1,7 +1,7 @@
 const {
   getRecipeList,
   getRecipeDetail,
-} = require("../controllers/recipe.controller.js");
+} = require("../services/recipe.services.js");
 
 const express = require("express");
 const router = express.Router();

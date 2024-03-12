@@ -4,7 +4,7 @@ const {
   registerPost,
   updatePost,
   deletePost,
-} = require("../controllers/post.controller.js");
+} = require("../services/post.services.js");
 
 const express = require("express");
 const router = express.Router();

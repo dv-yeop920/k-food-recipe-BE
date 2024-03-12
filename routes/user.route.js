@@ -3,7 +3,7 @@ const {
   signIn,
   signOut,
   authorization,
-} = require("../controllers/user.controller.js");
+} = require("../services/user.services.js");
 
 const express = require("express");
 const router = express.Router();

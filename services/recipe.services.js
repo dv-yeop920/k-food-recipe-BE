@@ -1,20 +1,16 @@
 const { Recipe } = require("../models/recipe.model");
 
 exports.getRecipeList = async (req, res) => {
-  const { cursor = 1, search, tab } = req.query;
-  const limit = 24; // 한 페이지에 표시할 아이템 수
-  const skip = (cursor - 1) * limit; // 건너뛸 아이템 수
-
   let recipeList;
   let query = {};
 
+  const { cursor = 1, search, tab } = req.query;
+  const limit = 24; // 한 페이지에 표시할 아이템 수
+  const skip = (cursor - 1) * limit; // 건너뛸 아이템 수
   const TAB_VALUE = tab.trim();
 
   const regexTabValue = new RegExp(`.*${tab}.*`);
-
-  const regexSearchValue = new RegExp(
-    `.*${search.trim()}.*`
-  );
+  const regexSearchValue = new RegExp(`.*${search.trim()}.*`);
 
   try {
     if (TAB_VALUE === "전체" || TAB_VALUE === "null") {
@@ -25,28 +21,16 @@ exports.getRecipeList = async (req, res) => {
       if (search.trim() !== "null") {
         query.$or = [
           {
-            $and: [
-              { RCP_NM: regexTabValue },
-              { RCP_NM: regexSearchValue },
-            ],
+            $and: [{ RCP_NM: regexTabValue }, { RCP_NM: regexSearchValue }],
           },
           {
-            $and: [
-              { HASH_TAG: regexTabValue },
-              { RCP_NM: regexSearchValue },
-            ],
+            $and: [{ HASH_TAG: regexTabValue }, { RCP_NM: regexSearchValue }],
           },
           {
-            $and: [
-              { RCP_WAY2: regexTabValue },
-              { RCP_NM: regexSearchValue },
-            ],
+            $and: [{ RCP_WAY2: regexTabValue }, { RCP_NM: regexSearchValue }],
           },
           {
-            $and: [
-              { RCP_PAT2: regexTabValue },
-              { RCP_NM: regexSearchValue },
-            ],
+            $and: [{ RCP_PAT2: regexTabValue }, { RCP_NM: regexSearchValue }],
           },
         ];
       } else {
@@ -59,9 +43,7 @@ exports.getRecipeList = async (req, res) => {
       }
     }
 
-    recipeList = await Recipe.find(query)
-      .skip(skip)
-      .limit(limit);
+    recipeList = await Recipe.find(query).skip(skip).limit(limit);
 
     res.json({
       recipeList: recipeList,

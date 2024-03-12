@@ -8,9 +8,7 @@ exports.getPostList = async (req, res) => {
   const searchValue = req.query.search;
 
   //NOTE - 정규식 검사 해서 검색어가 특수문자가 들어가 있어도 검색 되도록
-  const RegexValue = text => {
-    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  };
+  const RegexValue = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const RegexSearchValue = RegexValue(searchValue);
 

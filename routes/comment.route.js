@@ -3,7 +3,7 @@ const {
   registerComment,
   updateComment,
   deleteComment,
-} = require("../controllers/comment.controller.js");
+} = require("../services/comment.services.js");
 
 const express = require("express");
 const router = express.Router();
